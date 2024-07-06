@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge Calc</title>
+    <link rel="stylesheet" href="css/menu.css">
+    <style>
+
+    header h1 a:link, header h1 a:visited {
+        color: #51ff00;
+    }
+    header h1 a:is(:link) {
+        color: #ffffff;
+        margin-top: 40px;
+    }
+    header button.mode {
+        border: none;
+        background: url(images/calc/mode.svg) no-repeat center;
+        height: 40px;
+        display: block;
+        transition: all 0.2s ease-in;
+        width: 120px;
+        margin-left: 300px;
+        margin-top: -20px;
+    }
+
+        header button.mode:is(:hover, :focus) {
+        cursor: pointer;
+        transform: scale(1.05);
+    }
+        div.display {
+        border-radius: 5%;
+        background-color: rgba(56, 56, 56, 0.2);
+        display: flex;
+        flex-direction: column;
+        height: 124px;
+        margin-top: 1px;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+    main.light div.display {
+        background-color: rgba(204, 204, 204, 0.2);
+    }
+    div.display output.operation {
+        font-weight: 275;
+        font-size: 33px;
+        color: #1f7c0c;
+    }
+    div.display output.result {
+        font-weight: 275;
+        font-size: 54px;
+        color: #51ff00;
+    }
+    div.buttons {
+        display: grid;
+        gap: 14px;
+        margin-top: -20px;
+        justify-content: center;
+        grid-template-columns: repeat(4, 68px);
+        grid-template-rows: repeat(5, 68px);
+    }
+    div.buttons button {
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s ease-in;
+    }
+    div.buttons button.cero {
+        position: relative;
+        margin-left: 80px;
+    }
+
+        /*light mode*/
+
+        main.light{
+            background: url(images/bg-light-calc.svg) no-repeat center;
+        }
+        main.light header button.mode {
+            background: url(images/Modo-oscuro-calc.svg) no-repeat center;
+        }
+        main.light div.buttons button.clear {
+            background: url(images/C-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.back {
+            background: url(images/Delete-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.pow {
+            background: url(images/pow-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.div {
+            background: url(images/Division-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.n7 {
+            background: url(images/7-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.n8 {
+            background: url(images/8-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.n9 {
+            background: url(images/9-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.mul {
+            background: url(images/X-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.n4 {
+            background: url(images/4-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.n5 {
+            background: url(images/5-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.n6 {
+            background: url(images/6-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.res {
+            background: url(images/--light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.n1 {
+            background: url(images/1-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.n2 {
+            background: url(images/2-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.n3 {
+            background: url(images/3-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.sum {
+            background: url(images/+-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.igu {
+            background: url(images/=-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.punto {
+            background: url(images/dot-light-mode.svg) no-repeat center;
+        }
+        main.light div.buttons button.cero {
+            background: url(images/0-light-mode.svg) no-repeat center;
+            grid-column-end:span 2;
+        }
+        main.light div.buttons button:is(:hover, :focus) {
+            transform: scale(1.1);    
+        }
+
+
+        /*dark mode*/
+
+        main {
+            background: url(images/bg-dark.svg) no-repeat center;
+            transition: background 0.5s ease-in;
+        }
+        main header button.mode {
+            background: url(images/btn-mode-calc.svg) no-repeat center;
+        }
+        div.buttons button.clear {
+            background: url(images/C-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.back {
+            background: url(images/clear-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.pow {
+            background: url(images/pow-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.div {
+            background: url(images/division-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.n7 {
+            background: url(images/7-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.n8 {
+            background: url(images/8-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.n9 {
+            background: url(images/9-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.mul {
+            background: url(images/X-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.n4 {
+            background: url(images/4-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.n5 {
+            background: url(images/5-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.n6 {
+            background: url(images/6-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.res {
+            background: url(images/--dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.n1 {
+            background: url(images/1-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.n2 {
+            background: url(images/2-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.n3 {
+            background: url(images/3-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.sum {
+            background: url(images/+-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.igu {
+            background: url(images/=-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.punto {
+            background: url(images/dot-dark-mode.svg) no-repeat center;
+        }
+        div.buttons button.cero {
+            background: url(images/0-dark-mode.svg) no-repeat center;
+            grid-column-end:span 2;
+        }
+        div.buttons button:is(:hover, :focus) {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>
+                <a href="index.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </h1>
+            <button class="mode"></button>
+        </header>
+        <section>
+            <div class="display">
+                <output class="operation"></output>
+                <output class="result"></output>
+            </div>
+            <div class="buttons">
+                <button class="clear"></button>
+                <button class="back"></button>
+                <button class="pow"  data-opr="**"></button>
+                <button class="div"  data-opr="/"></button>
+                <button class="n7"   data-num="7"></button>
+                <button class="n8"   data-num="8"></button>
+                <button class="n9"   data-num="9"></button>
+                <button class="mul"  data-opr="*"></button>
+                <button class="n4"   data-num="4"></button>
+                <button class="n5"   data-num="5"></button>
+                <button class="n6"   data-num="6"></button>
+                <button class="res"  data-opr="-"></button>
+                <button class="n1"   data-num="1"></button>
+                <button class="n2"   data-num="2"></button>
+                <button class="n3"   data-num="3"></button>
+                <button class="sum"  data-opr="+"></button>
+                <button class="cero" data-num="0"></button>
+                <button class="punto"data-opr="."></button>
+                <button class="igu"data-opr=""></button>
+            </div>
+        </section>
+    </main>
+    <script>
+        //elementos
+        const mode = document.querySelector('.mode')
+        const main = document.querySelector('main')
+        const oper = document.querySelector('.operation')
+        const clear = document.querySelector('.clear')
+        const back = document.querySelector('.back')
+        const result = document.querySelector('.igu')
+        //numeros y operadores
+        const nums = document.querySelectorAll("button[data-num]")
+        const oprs = document.querySelectorAll("button[data-opr]")
+        //operacion logica
+        var operStatus = false
+        //click button
+        nums.forEach(element => {
+            element.addEventListener('click',()=>{
+                if(oper.textContent.length < 18){
+                   oper.textContent += element.getAttribute('data-num')  
+                   operStatus = true    
+             }
+            })
+        });
+        oprs.forEach(element => {
+            element.addEventListener('click',()=>{
+                if(oper.textContent.length < 18){
+                    if(operStatus){
+                       oper.textContent += element.getAttribute('data-opr')}  
+                       operStatus = false
+                    }
+    })
+        });
+        clear.addEventListener('click',()=>{
+            oper.textContent='';
+        })
+        mode.addEventListener('click',(e) =>{
+            main.classList.toggle('light')
+        })
+        back.addEventListener('click',() =>{
+            oper.textContent = oper.textContent.slice(0,-1)
+            if(isNaN(oper.textContent.slice(-1))){
+                operStatus=false
+            }
+        })
+        result.addEventListener('click',()=>{
+            showResult()
+
+        })
+        function showResult(){
+            oper.value = eval (oper.value)
+        }
+       
+        document.addEventListener('keyup',(evt) => {
+          console.log(evt.keyCode)
+            switch (evt.keyCode){
+                case 96:
+                case 48:
+                    oper.textContent += 0
+                    break;
+                case 97:
+                case 49:
+                    oper.textContent += 1
+                    break;
+                case 98:
+                case 50:
+                    oper.textContent += 2
+                    break;
+                case 99:
+                case 51:
+                    oper.textContent += 3
+                    break;
+                case 100:
+                case 52:
+                    oper.textContent += 4
+                    break;
+                case 101:
+                case 53:
+                    oper.textContent += 5
+                    break;
+                case 102:
+                case 54:
+                    oper.textContent += 6
+                    break;
+                case 103:
+                case 55:
+                    oper.textContent += 7
+                    break;
+                case 104:
+                case 56:
+                    oper.textContent += 8
+                    break;
+                case 105:
+                case 57:
+                    oper.textContent += 9
+                    break;
+                    case 105:
+                case 106:
+                    oper.textContent += '*'
+                    break;
+                case 111:
+                    oper.textContent += '/'
+                    break;  
+                case 109:
+                    oper.textContent += '-'
+                    break; 
+                case 107:
+                    oper.textContent += '+'
+                    break; 
+                case 13:
+                    showResult()
+                    break; 
+                default:
+                break;
+          }
+        })
+
+    </script>
+</body>
+</html>
